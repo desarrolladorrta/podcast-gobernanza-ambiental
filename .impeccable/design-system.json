@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-20",
+  "title": "Design System: Gobernanza ambiental · CECAR",
+  "extensions": {
+    "shadows": [
+      { "name": "player", "value": "0 8px 24px #193e3105", "purpose": "Sombra observada del reproductor." }
+    ],
+    "motion": [
+      { "name": "play-hover", "value": "background .2s,transform .2s", "purpose": "Hover de reproducción: verde #255a48 y scale(1.04)." },
+      { "name": "chapter-hover", "value": "background .2s", "purpose": "Transición de fondo de capítulos." },
+      { "name": "playing-status", "value": "breathe 1.8s ease-in-out infinite", "purpose": "Al 50%, box-shadow: 0 0 0 4px #6d8e5325 en el punto de estado." },
+      { "name": "reduced-motion", "value": "@media(prefers-reduced-motion:reduce)", "purpose": "animation:none!important; transition:none!important; html scroll-behavior:auto." }
+    ],
+    "breakpoints": [
+      { "name": "mobile-max", "value": "760px" },
+      { "name": "compact-max", "value": "1100px" },
+      { "name": "wide-min", "value": "1500px" }
+    ],
+    "focus": { "value": "3px solid #658c41", "offset": "4px", "searchOffset": "5px", "selector": ":focus-visible" },
+    "provenance": {
+      "cover": "assets/territorio.webp.json",
+      "original": "assets/territorio.png.json",
+      "generation": "assets/territorio.provenance.json",
+      "logo": "assets/logo-cecar.png.json",
+      "favicon": "assets/favicon.ico: sin registro de procedencia observado",
+      "note": "Portada generada con OpenAI/gpt-image-1; escena ilustrativa sin lugar específico. WebP derivado mediante ffmpeg, calidad 88. Logo proporcionado por el usuario, sin modificar."
+    },
+    "review": {
+      "disposition": "ship",
+      "source": "Revisión final comunicada en el encargo; fixes observados en HTML/CSS.",
+      "scope": ["Números de capítulos inactivos: #607066", "Subtítulo de capítulo activo: #607066", "Etiqueta sr-only del buscador de transcripción"],
+      "limitation": "No afirma conformidad WCAG total; documentación sin navegador."
+    },
+    "refinementReview": {
+      "disposition": "ship",
+      "scope": ["Controles simétricos de salto de 15 segundos", "Reflexión personal opcional y temporal, sin persistencia, envío ni evaluación; descarga voluntaria"],
+      "source": "Reviewer fresco y verificaciones comunicados por el usuario; implementación contrastada en index.html, styles.css y app.js.",
+      "captures": [".impeccable/review/controls-desktop.png", ".impeccable/review/controls-mobile.png", ".impeccable/review/reflection-mobile.png"],
+      "reportedChecks": ["npm test: 6/6", "Navegador: saltos 100 → 85 → 100", "Navegador: nota perdida al recargar"],
+      "limitation": "Alcance limitado a estos dos pedidos; no se repitieron pruebas ni revisión de navegador en esta actualización documental."
+    }
+  },
+  "components": [
+    {
+      "name": "Saltos de audio",
+      "kind": "button",
+      "description": "Botones de 44×44px, SVG de 30px con viewBox 32×32 y número 15 integrado; flechas simétricas. En la implementación retroceden o adelantan 15 segundos; muestra sin lógica de audio.",
+      "html": "<button class=\"ds-skip\" aria-label=\"Retroceder 15 segundos\" title=\"Retroceder 15 segundos\"><svg viewBox=\"0 0 32 32\" aria-hidden=\"true\"><path d=\"M11 7h5a11 11 0 1 1-9.5 5.5M16 2l-5 5 5 5\"/><text x=\"16\" y=\"21.5\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-size=\"10\" font-weight=\"750\">15</text></svg></button><button class=\"ds-skip\" aria-label=\"Adelantar 15 segundos\" title=\"Adelantar 15 segundos\"><svg viewBox=\"0 0 32 32\" aria-hidden=\"true\"><path d=\"M21 7h-5a11 11 0 1 0 9.5 5.5M16 2l5 5-5 5\"/><text x=\"16\" y=\"21.5\" text-anchor=\"middle\" fill=\"currentColor\" stroke=\"none\" font-size=\"10\" font-weight=\"750\">15</text></svg></button>",
+      "css": ".ds-skip{box-sizing:border-box;display:inline-grid;place-items:center;width:44px;height:44px;padding:7px;border:1px solid transparent;border-radius:50%;background:transparent;color:var(--forest);font-family:Manrope,'Segoe UI',sans-serif;cursor:pointer;transition:background .2s,border-color .2s}.ds-skip svg{display:block;width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.ds-skip:hover{background:var(--soft);border-color:var(--line)}.ds-skip:active{background:var(--line)}.ds-skip:focus-visible{outline:3px solid #658c41;outline-offset:4px}@media(prefers-reduced-motion:reduce){.ds-skip{transition:none!important}}"
+    },
+    {
+      "name": "Reflexión personal temporal",
+      "kind": "input",
+      "description": "Ejercicio personal opcional: no se persiste, envía, revisa ni califica. Las notas se pierden al recargar o cerrar; descarga TXT solo a petición mediante Blob y enlace temporal en app.js. Muestra sin lógica de descarga.",
+      "html": "<section class=\"ds-reflection\"><p id=\"ds-purpose\">Este ejercicio es personal y opcional. Tus respuestas no se guardan ni se envían a docentes o a otras personas; nadie las revisará ni calificará.</p><label for=\"ds-notes\">Tu reflexión personal (opcional)</label><textarea id=\"ds-notes\" rows=\"4\" aria-describedby=\"ds-purpose ds-save-state\" placeholder=\"Usa este espacio para organizar tus ideas…\"></textarea><div class=\"ds-reflection-actions\"><small id=\"ds-save-state\">Las notas se perderán al recargar o cerrar la página. Descárgalas si quieres conservarlas.</small><button class=\"ds-download-notes\" type=\"button\">Descargar mis notas</button></div></section>",
+      "css": ".ds-reflection{font-family:Manrope,'Segoe UI',sans-serif;color:var(--ink)}.ds-reflection p{font-size:12px;color:var(--muted);max-width:80ch}.ds-reflection label{font-size:12px;font-weight:700;display:block;margin-bottom:8px}.ds-reflection textarea{box-sizing:border-box;display:block;width:100%;resize:vertical;min-height:120px;border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink);padding:15px;font:13px/1.8 Manrope,'Segoe UI',sans-serif;caret-color:var(--forest)}.ds-reflection textarea::placeholder{color:#69786e}.ds-reflection-actions{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:10px}.ds-reflection-actions small{font-size:10px;color:var(--muted)}.ds-download-notes{border:0;padding:4px 0;background:none;color:var(--forest);font:700 11px Manrope,'Segoe UI',sans-serif;white-space:nowrap;cursor:pointer}.ds-download-notes:hover{text-decoration:underline}.ds-reflection textarea:focus-visible,.ds-download-notes:focus-visible{outline:3px solid #658c41;outline-offset:4px}@media(max-width:760px){.ds-reflection-actions{align-items:start;flex-direction:column;gap:8px}}"
+    },
+    {
+      "name": "Reproducción",
+      "kind": "button",
+      "description": "Control circular principal; muestra estática sin lógica de audio.",
+      "html": "<button class=\"ds-play\" aria-label=\"Reproducir podcast\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m9 5 11 7-11 7Z\"/></svg></button>",
+      "css": ".ds-play{width:53px;height:53px;border:0;border-radius:50%;background:var(--forest);color:white;display:grid;place-items:center;cursor:pointer;transition:background .2s,transform .2s}.ds-play svg{width:24px;height:24px;fill:currentColor}.ds-play:hover{background:#255a48;transform:scale(1.04)}.ds-play:focus-visible{outline:3px solid #658c41;outline-offset:4px}@media(max-width:760px){.ds-play{width:52px;height:52px}}@media(prefers-reduced-motion:reduce){.ds-play{transition:none!important}}"
+    },
+    {
+      "name": "Acción principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Comprobar respuestas.",
+      "html": "<button class=\"ds-primary\">Comprobar respuestas</button>",
+      "css": ".ds-primary{background:var(--forest);color:white;border:0;border-radius:7px;padding:12px 18px;font:650 12px Manrope,'Segoe UI',sans-serif;cursor:pointer}.ds-primary:hover{background:#255a48}.ds-primary:focus-visible{outline:3px solid #658c41;outline-offset:4px}"
+    },
+    {
+      "name": "Capítulo activo",
+      "kind": "custom",
+      "refersTo": "chapter-active",
+      "description": "Fila seleccionada; subtítulo con contraste corregido.",
+      "html": "<button class=\"ds-chapter\" aria-current=\"true\"><span class=\"ds-number\">01</span><span class=\"ds-info\"><strong>Un territorio, muchas voces</strong><span>El punto de partida</span></span><span class=\"ds-time\">0:00</span></button>",
+      "css": ".ds-chapter{display:flex;align-items:center;gap:12px;width:100%;padding:17px 10px;border:0;border-radius:7px;text-align:left;background:var(--soft);color:var(--ink);font-family:Manrope,'Segoe UI',sans-serif;cursor:pointer;transition:background .2s}.ds-chapter:hover{background:var(--soft)}.ds-number{color:var(--forest);font-size:11px;font-weight:800;min-width:20px;font-variant-numeric:tabular-nums}.ds-info{flex:1}.ds-info strong{display:block;font-size:11px;font-weight:700;line-height:1.5}.ds-info>span{display:block;font-size:10px;color:#607066;margin-top:4px}.ds-time{font-size:10px;color:var(--forest);font-variant-numeric:tabular-nums;align-self:flex-start;margin-top:2px}.ds-chapter:focus-visible{outline:3px solid #658c41;outline-offset:4px}@media(max-width:1100px){.ds-chapter{padding:15px 7px;gap:8px}}@media(max-width:760px){.ds-chapter{padding:15px 12px;gap:13px}.ds-info strong,.ds-number{font-size:12px}.ds-info>span,.ds-time{font-size:11px}}@media(prefers-reduced-motion:reduce){.ds-chapter{transition:none!important}}"
+    },
+    {
+      "name": "Búsqueda de transcripción",
+      "kind": "input",
+      "description": "Campo con etiqueta vinculada y visualmente oculta.",
+      "html": "<label class=\"ds-search\" for=\"ds-search-input\"><span class=\"ds-sr\">Buscar en la transcripción</span><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"10\" cy=\"10\" r=\"6\"/><path d=\"m15 15 6 6\"/></svg><input id=\"ds-search-input\" type=\"search\" placeholder=\"Buscar en la transcripción…\"></label>",
+      "css": ".ds-search{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--white);border:1px solid var(--line);border-radius:7px;width:400px;max-width:100%}.ds-search svg{color:var(--muted);width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;flex-shrink:0}.ds-search input{border:0;background:none;width:100%;min-width:0;color:var(--ink);font:12px Manrope,'Segoe UI',sans-serif}.ds-search input::placeholder{color:#69786e}.ds-search input:focus-visible{outline:3px solid #658c41;outline-offset:5px}.ds-sr{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}"
+    },
+    {
+      "name": "Pestañas educativas",
+      "kind": "nav",
+      "description": "Muestra de selección y foco; la navegación interactiva corresponde a la implementación.",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\" aria-label=\"Contenido educativo\"><button role=\"tab\" aria-selected=\"true\">Sobre el episodio</button><button role=\"tab\" aria-selected=\"false\" tabindex=\"-1\">Transcripción</button></div>",
+      "css": ".ds-tabs{display:flex;gap:34px;border-bottom:1px solid var(--line)}.ds-tabs button{padding:0 0 16px;position:relative;background:none;border:0;font:600 12px Manrope,'Segoe UI',sans-serif;color:var(--muted);cursor:pointer}.ds-tabs button[aria-selected=true]{color:var(--forest);font-weight:800}.ds-tabs button[aria-selected=true]:after{content:'';position:absolute;bottom:-1px;height:3px;border-radius:2px;left:0;right:0;background:var(--forest)}.ds-tabs button:hover{color:var(--forest)}.ds-tabs button:focus-visible{outline:3px solid #658c41;outline-offset:4px}@media(max-width:760px){.ds-tabs{gap:19px;overflow:auto;scrollbar-width:none}.ds-tabs button{min-height:44px;white-space:nowrap;font-size:11px;padding-bottom:13px}}"
+    },
+    {
+      "name": "Etiqueta temática",
+      "kind": "chip",
+      "description": "Etiqueta informativa, sin interacción ni estados de botón.",
+      "html": "<span class=\"ds-tag\">Gobernanza ambiental</span>",
+      "css": ".ds-tag{display:inline-block;font:9px Manrope,'Segoe UI',sans-serif;background:var(--soft);color:#446345;border:1px solid #dce5d6;border-radius:5px;padding:4px 9px}"
+    },
+    {
+      "name": "Contenedor del reproductor",
+      "kind": "card",
+      "refersTo": "player",
+      "description": "Superficie estructural sin hover propio; muestra del cuerpo sin reproducir la portada raster.",
+      "html": "<section class=\"ds-player\" aria-label=\"Reproductor del podcast\"><div class=\"ds-body\">Listo para escuchar</div></section>",
+      "css": ".ds-player{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 24px #193e3105;color:var(--forest);font:600 10px Manrope,'Segoe UI',sans-serif}.ds-body{padding:21px 27px 19px}@media(max-width:760px){.ds-body{padding:20px 20px 19px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Bitácora sonora de territorio",
+    "overview": "Mundo aprobado por el usuario: fotografía fluvial y bosque, fondo claro, verde profundo, reproductor protagonista y capítulos. La imagen tiene tratamiento fotográfico, pero es una escena generada ilustrativa, no un registro de un territorio real. La interfaz acompaña la escucha y la lectura sin competir con ellas.",
+    "keyCharacteristics": ["Portada naturalista con texto blanco sobre sombreado.", "Controles sólidos, separadores discretos y superficies claras.", "Identidad CECAR conservada y Manrope local."],
+    "rules": [],
+    "dos": [
+      "Do conservar el protagonismo de la escucha, la fotografía ilustrativa y la identidad CECAR aprobadas.",
+      "Do preservar foco visible, etiquetas accesibles y alternativa de movimiento reducido.",
+      "Do mantener la procedencia raster: `assets/territorio.webp.json` documenta OpenAI/gpt-image-1 y conversión ffmpeg calidad 88; `assets/territorio.png.json` y `assets/territorio.provenance.json` registran el original; `assets/logo-cecar.png.json` identifica el logo proporcionado, sin modificación."
+    ],
+    "donts": [
+      "Don't presentar la escena generada como fotografía documental de un lugar real ni inventar autoría o licencias. El favicon existente no tiene un registro de procedencia observado.",
+      "Don't introducir escalas, componentes o tokens no presentes, ni copiar contratos de desarrollo al HTML.",
+      "Don't convertir el veredicto final ship en una afirmación de conformidad WCAG total: el alcance comunicado es la resolución de dos contrastes de capítulos con `#607066` y la etiqueta sr-only del buscador. Esta documentación no añade una auditoría de navegador."
+    ]
+  }
+}

@@ -1,0 +1,3 @@
+Manrope, Google Fonts. SIL Open Font License 1.1.
+Source: https://github.com/sharanda/manrope
+Font asset: https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggexSg.woff2
